@@ -12,7 +12,7 @@ function promedio() {
     }
 
     let apellido = prompt("Ingrese el apellido del alumno");
-    while (!/^[a-zA-Z]+$/.test(apelido) || apellido == null) {
+    while (!/^[a-zA-Z]+$/.test(apellido) || apellido == null) {
 
         alert("El apellido ingresado no es valido");
         apellido = prompt("Ingrese nuevamente el apellido del alumno");
@@ -21,7 +21,7 @@ function promedio() {
 
 let cantidadNotas = parseInt(prompt("Ingrese la cantidad de notas"))
 while (isNaN(cantidadNotas) || cantidadNotas <= 0){
-    cantidadNOtas = parseInt(prompt("Ingrese un número válido mayor que 0, para la cantidad de notas"));
+    cantidadNotas = parseInt(prompt("Ingrese un número válido mayor que 0, para la cantidad de notas"));
     
 }
 
@@ -29,10 +29,10 @@ let sumaNotas = 0;
 
 for (x=1; x <= cantidadNotas; x++){
 
-    let nota = parseFloat(prompt("Ingrese la nota" + x + "de" + nombre + " " + apellido));
+    let nota = parseFloat(prompt("Ingrese la nota " + x + " de " + nombre + " " + apellido));
 
     while(isNaN(nota) || nota < 0 || nota > 10){
-        nota = parseFloat(prompt("Ingrese una nota entre 0 y 10 para la nota" + x + " de " + nombre + " " + apellido));
+        nota = parseFloat(prompt("Ingrese una nota entre 0 y 10 para la nota " + x + " de " + nombre + " " + apellido));
 
     }
 
@@ -42,7 +42,7 @@ for (x=1; x <= cantidadNotas; x++){
 
 let promedio = sumaNotas / cantidadNotas;
 
-alert ("El promedio de" + nombre + " " + apellido + "es" + promedio.toFixed(2));
+alert ("El promedio de " + nombre + " " + apellido + " es " + promedio.toFixed(2));
 
 if (promedio >= 6){
 
@@ -76,12 +76,12 @@ if (alumnosAprobados == null || alumnosAprobados.length == 0){
     alert ("No hay alumnos aprobados");
 
 } else{
-        alert ("Los alumnos aprobados son:" + a + " " + alumnosAprobados.join(", "));
+        alert ("Los alumnos aprobados son: " + a + " " + alumnosAprobados.join(", "));
     }
 
-    if (alumnosDesaprobados == nul || alumnosDesaprobados.length == 0){
+    if (alumnosDesaprobados == null || alumnosDesaprobados.length == 0){
         alert ("No hay alumnos desaprobados");
 
     } else {
-        alert ("Los alumnos aprobados son:" + i + " " + alumnosDesaprobados.join(", "));
+        alert ("Los alumnos desaprobados son: " + i + " " + alumnosDesaprobados.join(", "));
     }
