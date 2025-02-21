@@ -1,15 +1,47 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MaraCortes_PrimeraPreEntrega</title>
+    <title>MaraCortes_SegundaPreEntrega</title>
 </head>
+
 <body>
-    
-    <h1>Primera Pre Entrega JS </h1>
+
+    <h1>Calificación de Alumnos </h1>
+
+    <form id="formulario">
+        <label for="nombre">Nombre del alumno:</label><br>
+        <input type="text" id="nombre"><br><br>
+
+        <label for="apellido">Apellido del Alumno</label><br>
+        <input type="text" id="apellido"><br><br>
+
+        <label for="cantidadNotas">Cantidad de Notas</label><br>
+        <input type="number" id="cantidadNotas"><br><br>
+
+
+
+        <div id="divAgregarNotas">
+
+        </div>
+
+        <button type="button" onclick="calcularPromedio()">Calcular Promedio</button>
+
+    </form>
+
+    <div id="divResultadoAlumno">
+        <p id="mensajeResultadoAlumno"></p>
+    </div>
+
+    <div id="divResultadoCurso">
+        <p id="mensajeResultadoAprobados"></p>
+        <p id="mensajeResultadoDesaprobados"></p>
+    </div>
 
 
     <script src="main.js"></script>
 </body>
+
 </html>

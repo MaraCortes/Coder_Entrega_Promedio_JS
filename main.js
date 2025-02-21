@@ -1,87 +1,115 @@
 let alumnosAprobados = [];
 let alumnosDesaprobados = [];
 
-function promedio() {
 
-    let nombre = prompt("Ingrese el nombre del alumno");
-    while (!/^[a-zA-Z]+$/.test(nombre) || nombre == null) {
+function crearCampoNotas(cantidadNotas) {
+    let contenedorNotas = document.getElementById("divAgregarNotas");
 
+    for (let i = 1; i <= cantidadNotas; i++) {
 
-        nombre = prompt("Ingrese nuevamente el nombre del alumno");
+        const numeroNotas = document.createElement("input");
+        numeroNotas.id = `Nota ${i}`;
+        numeroNotas.type = "number";
+        numeroNotas.placeholder = `Nota ${i}`;
+        contenedorNotas.appendChild(numeroNotas);
+        // contenedorNotas.appendChild(" ");
+        if (cantidadNotas > 10) {
+            alert("Debe ingresar hasta 10 notas por alumno");
+            break;
+        }
 
     }
-
-    let apellido = prompt("Ingrese el apellido del alumno");
-    while (!/^[a-zA-Z]+$/.test(apellido) || apellido == null) {
-
-        alert("El apellido ingresado no es valido");
-        apellido = prompt("Ingrese nuevamente el apellido del alumno");
-
-    }
-
-let cantidadNotas = parseInt(prompt("Ingrese la cantidad de notas"))
-while (isNaN(cantidadNotas) || cantidadNotas <= 0){
-    cantidadNotas = parseInt(prompt("Ingrese un número válido mayor que 0, para la cantidad de notas"));
-    
 }
+
+
+//Aparecen los campos
+
+document.getElementById("cantidadNotas").addEventListener("input", function () {
+    let cantidadNotas = parseInt(this.value);
+    if (!isNaN(cantidadNotas) && cantidadNotas > 0) {
+
+        crearCampoNotas(cantidadNotas);
+    }
+
+});
+
+
+
+function calcularPromedio() {
+
+    let nombre = document.getElementById("nombre").value;
+    if (!/^[a-zA-Z]+$/.test(nombre) || nombre == null) {
+
+        alert("Ingresar un nombre válido");
+        return
+
+    }
+
+    let apellido = document.getElementById("apellido").value;
+    if (!/^[a-zA-Z]+$/.test(apellido) || apellido == null) {
+
+        alert("Ingresar un apellido válido");
+        return;
+
+    }
+
+    let cantidadNotas = parseInt(document.getElementById("cantidadNotas").value);
+
 
 let sumaNotas = 0;
 
-for (x=1; x <= cantidadNotas; x++){
-
-    let nota = parseFloat(prompt("Ingrese la nota " + x + " de " + nombre + " " + apellido));
-
-    while(isNaN(nota) || nota < 0 || nota > 10){
-        nota = parseFloat(prompt("Ingrese una nota entre 0 y 10 para la nota " + x + " de " + nombre + " " + apellido));
-
+for (let x = 1; x <= cantidadNotas; x++) {
+    let nota = parseFloat(document.getElementById(`Nota ${x}`).value);
+    if (isNaN(nota) || nota < 0 || nota > 10) {
+        alert(`La nota ${x} no es válida. Debe ser entre 0 y 10.`);
+        return;
     }
 
-    sumaNotas += nota; 
+    sumaNotas += nota;
 
 }
+
 
 let promedio = sumaNotas / cantidadNotas;
+ }
 
-alert ("El promedio de " + nombre + " " + apellido + " es " + promedio.toFixed(2));
+// let mensajeResultadoAlumno = document.getElementById("mensajeResultadoAlumno");
+// mensajeResultadoAlumno.innerText = `El promedio de ${nombre} ${apellido} es ${promedio.toFixed(2)}`;
+// mensajeResultadoAAlumno.innerText = `\n El alumno está aprobado`;
 
-if (promedio >= 6){
+// if (promedio >= 6) {
+    
+//     alumnosAprobados.push(`${nombre} ${apellido}`);
+   
+//     for (a = 0; a < alumnosAprobados.length; a++);
 
-    alert ("El alumno está aprobado");
-    let IdAlumnoAprobado = nombre + " " + apellido;
-    alumnosAprobados.push(IdAlumnoAprobado);
-
-    for( a = 0; a < alumnosAprobados.length; a++);   
-
-}else {
-
-    alert ("El alumno está desaprobado");
-    let IdAlumnoDesaprobado = nombre + " " + apellido;
-    alumnosDesaprobados.push(IdAlumnoDesaprobado);
-
-    for(i = 0; i < alumnosDesaprobados.length; i++);
-}
-
-}
+// } else {
+  
+//     alumnosDesaprobados.push(`${nombre} ${apellido}`);
+//     for (i = 0; i < alumnosDesaprobados.length; i++);
+// }
 
 
-let continuar = true
-while (continuar == true){
 
-    promedio()
-    continuar = confirm ("Desea promediar a otro estudiante?");
 
-}
+// let continuar = true
+// while (continuar == true) {
 
-if (alumnosAprobados == null || alumnosAprobados.length == 0){
-    alert ("No hay alumnos aprobados");
+//     promedio()
+//     continuar = confirm("Desea promediar a otro estudiante?");
 
-} else{
-        alert ("Los alumnos aprobados son: " + a + " " + alumnosAprobados.join(", "));
-    }
+// }
 
-    if (alumnosDesaprobados == null || alumnosDesaprobados.length == 0){
-        alert ("No hay alumnos desaprobados");
+// if (alumnosAprobados == null || alumnosAprobados.length == 0){
+//     alert ("No hay alumnos aprobados");
 
-    } else {
-        alert ("Los alumnos desaprobados son: " + i + " " + alumnosDesaprobados.join(", "));
-    }
+// } else{
+//         alert ("Los alumnos aprobados son: " + a + " " + alumnosAprobados.join(", "));
+//     }
+
+//     if (alumnosDesaprobados == null || alumnosDesaprobados.length == 0){
+//         alert ("No hay alumnos desaprobados");
+
+//     } else {
+//         alert ("Los alumnos desaprobados son: " + i + " " + alumnosDesaprobados.join(", "));
+//     }
