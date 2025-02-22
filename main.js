@@ -106,14 +106,3 @@ btn.addEventListener("click", calcularPromedio);
 
 
 
-
-
-let continuar = true
- while (continuar) {
-
-     calcularPromedio()
-     continuar = confirm("Desea promediar a otro estudiante?");
-
- }
-
-
