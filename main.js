@@ -3,33 +3,37 @@ let alumnosDesaprobados = [];
 
 
 function crearCampoNotas(cantidadNotas) {
-    let contenedorNotas = document.getElementById("divAgregarNotas");
+    let contenedorNotas = document.getElementById("divAgregarNotas");  
+    contenedorNotas.innerHTML = '';
 
-    for (let i = 1; i <= cantidadNotas; i++) {
+    
+
+    if (cantidadNotas > 10) {
+        alert("Debe ingresar hasta 10 notas por alumno");
+        return;
+    }
+    
+
+    for (let i = 1; i <= cantidadNotas; i++) {    
 
         const numeroNotas = document.createElement("input");
         numeroNotas.id = `Nota ${i}`;
         numeroNotas.type = "number";
         numeroNotas.placeholder = `Nota ${i}`;
-        contenedorNotas.appendChild(numeroNotas);
-        // contenedorNotas.appendChild(" ");
-        if (cantidadNotas > 10) {
-            alert("Debe ingresar hasta 10 notas por alumno");
-            break;
-        }
-
-    }
+        contenedorNotas.appendChild(numeroNotas);     
+        
+    }        
+        
 }
 
 
-//Aparecen los campos
 
 document.getElementById("cantidadNotas").addEventListener("input", function () {
     let cantidadNotas = parseInt(this.value);
     if (!isNaN(cantidadNotas) && cantidadNotas > 0) {
 
         crearCampoNotas(cantidadNotas);
-    }
+    } 
 
 });
 
@@ -56,9 +60,9 @@ function calcularPromedio() {
     let cantidadNotas = parseInt(document.getElementById("cantidadNotas").value);
 
 
-let sumaNotas = 0;
+    let sumaNotas = 0;
 
-for (let x = 1; x <= cantidadNotas; x++) {
+  for (let x = 1; x <= cantidadNotas; x++) {
     let nota = parseFloat(document.getElementById(`Nota ${x}`).value);
     if (isNaN(nota) || nota < 0 || nota > 10) {
         alert(`La nota ${x} no es válida. Debe ser entre 0 y 10.`);
@@ -66,50 +70,50 @@ for (let x = 1; x <= cantidadNotas; x++) {
     }
 
     sumaNotas += nota;
+  }
 
+
+   let promedio = sumaNotas / cantidadNotas;    
+
+
+
+
+let mensajePromedioAlumno = document.getElementById("mensajePromedioAlumno");
+  mensajePromedioAlumno.innerText = `El promedio de ${nombre} ${apellido} es ${promedio.toFixed(2)}`;
+
+  
+  let mensajeResultadoAlumno= document.getElementById("mensajeResultadoAlumno"); 
+
+
+ if (promedio >= 6){
+    
+           
+    mensajeResultadoAlumno.innerText = "\n El alumno está aprobado";
+    alumnosAprobados.push(`${nombre} ${apellido}`);
+     
+ } else {
+         
+    mensajeResultadoAlumno.innerText = "\n El alumno está desaprobado";
+    alumnosDesaprobados.push(`${nombre} ${apellido}`); 
+ }
 }
 
 
-let promedio = sumaNotas / cantidadNotas;
+let btn = document.getElementById("boton");
+btn.addEventListener("click", calcularPromedio);
+
+
+
+
+
+
+
+let continuar = true
+ while (continuar) {
+
+     calcularPromedio()
+     continuar = confirm("Desea promediar a otro estudiante?");
+
  }
 
-// let mensajeResultadoAlumno = document.getElementById("mensajeResultadoAlumno");
-// mensajeResultadoAlumno.innerText = `El promedio de ${nombre} ${apellido} es ${promedio.toFixed(2)}`;
-// mensajeResultadoAAlumno.innerText = `\n El alumno está aprobado`;
 
-// if (promedio >= 6) {
-    
-//     alumnosAprobados.push(`${nombre} ${apellido}`);
-   
-//     for (a = 0; a < alumnosAprobados.length; a++);
-
-// } else {
-  
-//     alumnosDesaprobados.push(`${nombre} ${apellido}`);
-//     for (i = 0; i < alumnosDesaprobados.length; i++);
-// }
-
-
-
-
-// let continuar = true
-// while (continuar == true) {
-
-//     promedio()
-//     continuar = confirm("Desea promediar a otro estudiante?");
-
-// }
-
-// if (alumnosAprobados == null || alumnosAprobados.length == 0){
-//     alert ("No hay alumnos aprobados");
-
-// } else{
-//         alert ("Los alumnos aprobados son: " + a + " " + alumnosAprobados.join(", "));
-//     }
-
-//     if (alumnosDesaprobados == null || alumnosDesaprobados.length == 0){
-//         alert ("No hay alumnos desaprobados");
-
-//     } else {
-//         alert ("Los alumnos desaprobados son: " + i + " " + alumnosDesaprobados.join(", "));
-//     }
